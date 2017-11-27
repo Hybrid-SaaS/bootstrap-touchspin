@@ -32,8 +32,8 @@
     }
 
     var defaults = {
-      min: 0,
-      max: 100,
+      min: Number.MIN_VALUE,
+      max: Number.MAX_VALUE,
       initval: '',
       replacementval: '',
       step: 1,
@@ -514,7 +514,7 @@
           case 'ceil':
             return (Math.ceil(value / settings.step) * settings.step).toFixed(settings.precision);
           default:
-            return value;
+            return value.toFixed(settings.precision);
         }
       }
 

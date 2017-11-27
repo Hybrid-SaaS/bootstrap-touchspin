@@ -514,7 +514,7 @@
           case 'ceil':
             return (Math.ceil(value / settings.step) * settings.step).toFixed(settings.precision);
           default:
-            return value;
+            return value.toFixed(settings.precision);
         }
       }
 

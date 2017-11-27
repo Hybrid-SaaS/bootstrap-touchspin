@@ -601,19 +601,24 @@
 
       }
 
-      function unmaskValue(value) {
-        return value.replace(new RegExp('\\'+settings.decimal, 'g'), '.');
-      }
       function unmaskValue(value) 
       { 
+        if (value === '')
+          return ''
+
         if (settings.decimal === ',')
         {
-            value = value.replace(/[,.]/g, function (m)  { 
-              // m is the match found in the string
-              // If,is matched return., if .matched return,
-              return m === ',' ? '.' : ''; });
-              value = parseFloat(value); 
-              return value; 
+            value = value.replace(/[,.]/g, 
+              function (m)  
+              { 
+                // m is the match found in the string
+                // If,is matched return., if .matched return,
+                return m === ',' ? '.' : ''; 
+              });
+          value = parseFloat(value); 
+          if (isNaN(value))
+            return 0;
+          return value; 
         } 
         return value.replace(new RegExp('\\'+settings.thousands, 'g'), ''); 
       }

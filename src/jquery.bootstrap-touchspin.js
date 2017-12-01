@@ -138,16 +138,26 @@
         }
       }
 
-      function changeSettings(newsettings) {
-        _updateSettings(newsettings);
-        _checkValue();
+      function changeSettings(newsettings)
+      {
+          _updateSettings(newsettings);
+          _checkValue();
 
-        var value = elements.input.val();
+          var value = '';
 
-        if (value !== '') {
-          value = Number(elements.input.val());
-          elements.input.val(maskValue(value.toFixed(settings.precision)));
-        }
+          if (newsettings.value != null)
+          {
+              value = Number(newsettings.value);
+          }
+          else
+          {
+              value = Number(elements.input.val());
+          }
+
+          if (value !== '')
+          {
+              elements.input.val(maskValue(value.toFixed(settings.precision)));
+          }
       }
 
       function _initSettings() {
